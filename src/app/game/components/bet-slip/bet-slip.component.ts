@@ -16,26 +16,23 @@ export class BetSlipComponent implements OnInit {
 
   @Output() placeBeatEvent = new EventEmitter<number>();
 
-  betForm: FormGroup;
+  betForm: FormGroup = new FormGroup({});
   isSubmitedForm: boolean = false;
 
   constructor(
-
     public gameService: GameService
-  ) {
+  ) { }
+
+  ngOnInit(): void {
 
     this.betForm = new FormGroup({
 
       moneyBet: new FormControl(0, [Validators.required, Validators.min(5)])
     })
-
-  }
-
-  ngOnInit(): void {
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    
+
     if (changes['resetBeat'] && !changes['resetBeat'].firstChange) {
       this.betForm.reset();
     }

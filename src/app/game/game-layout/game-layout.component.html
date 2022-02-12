@@ -1,14 +1,4 @@
 <div>
-    <header class="hero is-primary">
-      <div class="hero-body">
-        <p class="title">
-          The game
-        </p>
-        <p class="subtitle">
-          By Esperanza García
-        </p>
-      </div>
-    </header>
     <div class="columns is-desktop">
       <section class="m-5 box column is-three-fifths-desktop">
         <app-ball-selector *ngIf="gameService.isGaming" [balls]="ballNumbers" [beatNumbers]="gameService.beat.numbers" class="h-100"></app-ball-selector>
@@ -18,4 +8,4 @@
         <app-bet-slip [balls]="ballNumbers" [beatNumbers]="gameService.beat.numbers"  [resetBeat]="isReset" (placeBeatEvent)="placeBeat($event)"></app-bet-slip>
       </section>
     </div>
-  </div>
+</div>

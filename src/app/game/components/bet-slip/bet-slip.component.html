@@ -2,7 +2,7 @@
     <h1>Your bet:</h1>
     <div class="is-flex-wrap-wrap is-flex is-justify-content-center is-align-items-center">
             <button *ngFor="let ballBet of gameService.ballBets" class="button ball-button-sm is-size-7 m-1"
-                [class]="beatNumbers.includes(ballBet.number) ? ballBet.color: 'is-static'" (click)="changeBeat(ballBet.number)">
+                [class]="beatNumbers.includes(ballBet.number) ? ballBet.color: 'is-static'" [disabled]="!isGaming" (click)="changeBeat(ballBet.number)">
                 <span *ngIf="beatNumbers.includes(ballBet.number)">
                     {{ballBet.number}}
                 </span>
@@ -23,7 +23,7 @@
                     </button>
                 </p>
                 <div class="control is-expanded">
-                    <input formControlName="moneyBet" name="moneyBet" class="input" type="number" min="0">
+                    <input formControlName="moneyBet" name="moneyBet" class="input" type="number" min="0" [disabled]="!isGaming">
                 </div>
             </div>
             <p *ngIf="invalidField('moneyBet')" class="help is-danger">The beat must be almost 5</p>

@@ -35,6 +35,7 @@ export class BetSlipComponent implements OnInit {
   ngOnChanges(changes: SimpleChanges) {
 
     if (changes['resetBeat'] && !changes['resetBeat'].firstChange) {
+      this.betForm.enable();
       this.betForm.reset();
       this.isGaming = true;
     }
@@ -53,6 +54,7 @@ export class BetSlipComponent implements OnInit {
     if (this.betForm.invalid || this.beatNumbers.length === 0) return
     this.isGaming= false;
     this.placeBeatEvent.emit(this.betForm.value.moneyBet);
+    this.betForm.disable();
     this.isSubmitedForm = false;
   }
   invalidField(field: string) {

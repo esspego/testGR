@@ -41,7 +41,7 @@ export class GameService {
     this.winBall = winBall !== undefined ? winBall: this.winBall;
 
     if(this.beat.numbers.includes(winNumber)){
-      this.profit = this.beat.price *1.5;
+      this.profit = Number((this.beat.price *1.5).toFixed(2));
     }
   }
   changeBeat(number:number): void{

@@ -32,7 +32,7 @@
                 <h3> Total: {{beatNumbers.length * betForm.value.moneyBet }}€</h3>
             </div>
             <div class="my-3 is-flex is-justify-content-center content is-medium">
-                <button type="submit" class="button is-outline is-medium" >Place Beat</button>
+                <button type="submit" class="button is-outline is-medium" [disabled]="!isGaming" >Place Beat</button>
             </div>
         </form>
     </div>

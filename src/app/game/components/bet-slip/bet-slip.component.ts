@@ -18,6 +18,7 @@ export class BetSlipComponent implements OnInit {
 
   betForm: FormGroup = new FormGroup({});
   isSubmitedForm: boolean = false;
+  isGaming: boolean = true;
 
   constructor(
     public gameService: GameService
@@ -35,6 +36,7 @@ export class BetSlipComponent implements OnInit {
 
     if (changes['resetBeat'] && !changes['resetBeat'].firstChange) {
       this.betForm.reset();
+      this.isGaming = true;
     }
   }
 
@@ -49,7 +51,7 @@ export class BetSlipComponent implements OnInit {
     this.isSubmitedForm = true;
 
     if (this.betForm.invalid || this.beatNumbers.length === 0) return
-
+    this.isGaming= false;
     this.placeBeatEvent.emit(this.betForm.value.moneyBet);
     this.isSubmitedForm = false;
   }

@@ -1,0 +1,21 @@
+<div class="container">
+    <header class="hero is-primary">
+      <div class="hero-body">
+        <p class="title">
+          The game
+        </p>
+        <p class="subtitle">
+          By Esperanza García
+        </p>
+      </div>
+    </header>
+    <div class="container columns is-desktop">
+      <section class="section column">
+        <app-ball-selector [balls]="ballNumbers" [beatNumbers]="gameService.beat.numbers" *ngIf="gameService.isGaming"></app-ball-selector>
+        <app-bet-result *ngIf="!gameService.isGaming"></app-bet-result>
+      </section>
+      <section class="section column">
+        <app-bet-slip [balls]="ballNumbers" [beatNumbers]="gameService.beat.numbers" ></app-bet-slip>
+      </section>
+    </div>
+  </div>

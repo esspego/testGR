@@ -23,19 +23,26 @@ export class GameService {
     price: 0
   };
 
-  winNumber: (ballBet | undefined)= {
+  winBall: ballBet= {
     number: 0,
     color: ''
   }
-  
+  profit: number = 0;
   isGaming: Boolean = true;
 
   constructor() { 
   }
-  getWinNumber(): void {
-    
-    const winNumber = Math.floor(Math.random() * 10)+ 1;
-    this.winNumber = this.ballBets.find(ballBet => ballBet.number === winNumber);
+  placeBeat(moneyBet: number): void {
+    this.beat.price = moneyBet;
+    this.isGaming = false;
+
+    let winNumber = Math.floor(Math.random() * 10)+ 1;
+    let winBall = this.ballBets.find(ballBet => ballBet.number === winNumber);
+    this.winBall = winBall !== undefined ? winBall: this.winBall;
+
+    if(this.beat.numbers.includes(winNumber)){
+      this.profit = this.beat.price *1.5;
+    }
   }
   changeBeat(number:number): void{
 
@@ -44,5 +51,13 @@ export class GameService {
     }else{
       this.beat.numbers.push(number)
     }
+  }
+  resetGame(): void{
+    this.beat = {
+      numbers: [],
+      price: 0,
+    };
+    this.profit = 0;
+    this.isGaming = true;
   }
 }

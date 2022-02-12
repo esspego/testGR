@@ -8,27 +8,26 @@ import { GameService } from '../../services/game-service/game.service';
   styleUrls: ['./ball-selector.component.scss']
 })
 export class BallSelectorComponent implements OnInit {
-  
 
   @Input() balls: Array<ballBet> = []
   @Input() beatNumbers: Array<number> = []
 
   constructor(
+
     public gameService: GameService,
-  ) {    
+  ) {
   }
 
   ngOnInit(): void {
   }
-  changeBeat(number: number): void{
+
+  changeBeat(number: number): void {
 
     this.gameService.changeBeat(number)
   }
-  resetBeat(){
+
+  resetBeat() {
     this.gameService.beat.numbers = []
-  }
-  endLoading(){
-    this.gameService.isGaming= true
   }
 
 }

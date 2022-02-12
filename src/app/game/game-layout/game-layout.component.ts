@@ -9,16 +9,29 @@ import { GameService } from '../services/game-service/game.service';
 })
 export class GameLayoutComponent implements OnInit {
 
-  ballNumbers: Array <ballBet> = []
+  ballNumbers: Array<ballBet> = []
+  isReset: Boolean = false;
 
   constructor(
+    
     public gameService: GameService
   ) {
-      this.ballNumbers = this.gameService.ballBets;
+    this.ballNumbers = this.gameService.ballBets;
 
-   }
+  }
 
   ngOnInit(): void {
+  }
+
+  placeBeat(moneyBet: number) {
+
+    this.gameService.placeBeat(moneyBet);
+  }
+
+  resetGame() {
+
+    this.isReset = !this.isReset;
+    this.gameService.resetGame();
   }
 
 }

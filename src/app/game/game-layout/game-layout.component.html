@@ -1,4 +1,4 @@
-<div class="container">
+<div>
     <header class="hero is-primary">
       <div class="hero-body">
         <p class="title">
@@ -9,13 +9,13 @@
         </p>
       </div>
     </header>
-    <div class="container columns is-desktop">
-      <section class="section column">
-        <app-ball-selector [balls]="ballNumbers" [beatNumbers]="gameService.beat.numbers" *ngIf="gameService.isGaming"></app-ball-selector>
-        <app-bet-result *ngIf="!gameService.isGaming"></app-bet-result>
+    <div class="columns is-desktop">
+      <section class="m-5 box column is-three-fifths-desktop">
+        <app-ball-selector *ngIf="gameService.isGaming" [balls]="ballNumbers" [beatNumbers]="gameService.beat.numbers" class="h-100"></app-ball-selector>
+        <app-bet-result *ngIf="!gameService.isGaming" [winNumber]="gameService.winBall" [profit]="gameService.profit" (resetGameEvent)="resetGame()" ></app-bet-result>
       </section>
-      <section class="section column">
-        <app-bet-slip [balls]="ballNumbers" [beatNumbers]="gameService.beat.numbers" ></app-bet-slip>
+      <section class="m-5 box column">
+        <app-bet-slip [balls]="ballNumbers" [beatNumbers]="gameService.beat.numbers"  [resetBeat]="isReset" (placeBeatEvent)="placeBeat($event)"></app-bet-slip>
       </section>
     </div>
   </div>

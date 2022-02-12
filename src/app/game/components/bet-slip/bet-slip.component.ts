@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, SimpleChanges } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ballBet } from '../../models/models';
 import { GameService } from '../../services/game-service/game.service';
@@ -9,42 +9,54 @@ import { GameService } from '../../services/game-service/game.service';
   styleUrls: ['./bet-slip.component.scss']
 })
 export class BetSlipComponent implements OnInit {
-  
+
   @Input() balls: Array<ballBet> = []
   @Input() beatNumbers: Array<number> = []
+  @Input() resetBeat: Boolean = false;
+
+  @Output() placeBeatEvent = new EventEmitter<number>();
 
   betForm: FormGroup;
-  
+  isSubmitedForm: boolean = false;
+
   constructor(
 
     public gameService: GameService
-    ) { 
+  ) {
 
-      this.betForm = new FormGroup({
+    this.betForm = new FormGroup({
 
-          numbers: new FormControl(this.beatNumbers, Validators.required),
-          moneyBet:  new FormControl(0, [Validators.required, Validators.min(5)])
-      })
-  
-    }
-    
-    ngOnInit(): void {
+      moneyBet: new FormControl(0, [Validators.required, Validators.min(5)])
+    })
+
   }
-  
-  changeBeat(number: number): void{
 
-    if(!this.beatNumbers.includes(number)) return
+  ngOnInit(): void {
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    
+    if (changes['resetBeat'] && !changes['resetBeat'].firstChange) {
+      this.betForm.reset();
+    }
+  }
+
+  changeBeat(number: number): void {
+
+    if (!this.beatNumbers.includes(number)) return
     this.gameService.changeBeat(number)
   }
-  placeBeat(){
-    
-    this.betForm.markAllAsTouched()
-    console.log(this.betForm);
-    if(this.betForm.invalid) return
-    this.gameService.isGaming= false;
-    this.gameService.getWinNumber();
+  placeBeat() {
+
+    this.betForm.markAllAsTouched();
+    this.isSubmitedForm = true;
+
+    if (this.betForm.invalid || this.beatNumbers.length === 0) return
+
+    this.placeBeatEvent.emit(this.betForm.value.moneyBet);
+    this.isSubmitedForm = false;
   }
-  invalidField(field: string){
+  invalidField(field: string) {
 
     return this.betForm.get(field)?.invalid && this.betForm.get(field)?.touched;
   }

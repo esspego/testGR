@@ -1,12 +1,14 @@
-<section class="box">
-    <div class="">
-      <!-- <h1  class="is-flex is-justify-content-center title">RESULT</h1>
+<section>
+    <div>
+        <h1 class="is-flex is-justify-content-center title has-text-success" *ngIf="profit > 0">
+            YOU WON {{profit}} €
+        </h1>
+      <h1  class="is-flex is-justify-content-center title">RESULT</h1>
       <div class="is-flex is-justify-content-center">
-
-          <button class="button ball-button"  [class]="gameService.winNumber.color" >{{winNumber.number}}</button>
+          <button class="button ball-button"  [class]="winNumber.color" >{{winNumber.number}}</button>
       </div>
     </div>
     <div class="my-3 is-flex is-justify-content-center content is-medium">
-        <button class="button is-outline is-medium" (click)="gameService.isGaming = true"> Play again</button> -->
+        <button class="button is-outline is-medium" (click)="resetGame()"> Play again</button>
     </div>
 </section>

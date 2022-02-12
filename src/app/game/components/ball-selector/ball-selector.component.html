@@ -1,8 +1,11 @@
-<section class="box">
-    <div class="is-flex-wrap-wrap">
-        <button *ngFor="let ballBet of gameService.ballBets;index as i" class="button ball-button"  [class]="ballBet.color" [disabled]="beatNumbers.includes(ballBet.number)" (click)="changeBeat(ballBet.number)" >{{ballBet.number}}</button>
+<section class="h-100 is-flex is-flex-direction-column is-justify-content-space-around">
+    <div class="h-100 is-flex-wrap-wrap is-flex is-justify-content-center is-align-items-center">
+        <button *ngFor="let ballBet of gameService.ballBets;index as i" class="button ball-button-md m-1"  [class]="ballBet.color" [disabled]="beatNumbers.includes(ballBet.number)" (click)="changeBeat(ballBet.number)" >
+            {{ballBet.number}}
+        </button>
     </div>
-    <div class="my-3 is-flex is-justify-content-center content is-medium">
+    <div class="p-3 is-flex is-justify-content-center">
         <button class="button is-outline is-medium" (click)="resetBeat()">Clear selection</button>
     </div>
+
 </section>

@@ -5,7 +5,7 @@ import { GameService } from '../services/game-service/game.service';
 @Component({
   selector: 'app-game-layout',
   templateUrl: './game-layout.component.html',
-  styleUrls: ['./game-layout.component.scss']
+  styleUrls: ['./game-layout.component.scss'],
 })
 export class GameLayoutComponent implements OnInit {
 

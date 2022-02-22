@@ -22,4 +22,14 @@ describe('BetSlipComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+  it('form should be invalid', () => {
+    component.betForm.markAllAsTouched()
+    expect(component.invalidField('moneyBet')).toBeTrue();
+    component.betForm.setValue({moneyBet:3})
+    expect(component.invalidField('moneyBet')).toBeTrue();
+  });
+  it('form should be valid', () => {
+    component.betForm.setValue({moneyBet:10})
+    expect(component.invalidField('moneyBet')).toBeFalse();
+  });
 });

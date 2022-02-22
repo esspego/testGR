@@ -5,7 +5,6 @@ import { BallSelectorComponent } from './ball-selector.component';
 describe('BallSelectorComponent', () => {
   let component: BallSelectorComponent;
   let fixture: ComponentFixture<BallSelectorComponent>;
-
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [ BallSelectorComponent ]

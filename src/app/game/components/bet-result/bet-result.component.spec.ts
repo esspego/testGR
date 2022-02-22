@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { BetResultComponent } from './bet-result.component';
+import { By } from '@angular/platform-browser';
 
 describe('BetResultComponent', () => {
   let component: BetResultComponent;
